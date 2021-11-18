@@ -1,17 +1,25 @@
 
 import 'package:flutter/material.dart';
 
+
+// StatefulWidget也是继承自widget类，并重写了createElement()方法。
+// 不同的是返回的Element 对象并不相同 - StatefulElement
+// 另外StatefulWidget类中添加了一个新的接口createState()。
+
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title, this.initValue = 0}) : super(key: key);
 
-  // 此小部件是您的应用程序的主页。 它是有状态的，意味着有一个State 对象（定义如下）
-
-  // 这个State对象是状态的配置，它保存值（title）由父级（App小部件）和 State的build方法
+  // 命名参数中的必需要传的参数要添加required关键字，这样有利于静态代码分析器进行检查；
+  // 在继承 widget 时，第一个参数通常应该是Key。
 
   final String title;
+  final int initValue;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
+
+  // 一个 StatefulWidget 类会对应一个 State 类，State表示与其对应的 StatefulWidget 要维护的状态
+  // createState() 用于创建和 StatefulWidget 相关的状态，它在StatefulWidget 的生命周期中可能会被多次调用。
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -19,34 +27,25 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _incrementCounter() {
     setState(() {
-      // 这里对 setState 的调用是告诉 Flutter 框架某些东西已经发生更改需要重新
-      // 运行下面的构建方法build，以便界面可以反映更新的值
-
-      // 如果我们直接改变 _counter 不调用setState()，那么build方法就不会调用
       _counter++;
     });
+    // setState 通知Flutter框架状态发生改变，要调用其build方法重新构建 widget 树，从而达到更新UI的目的。
   }
 
   @override
   Widget build(BuildContext context) {
-    // 每次调用 setState 时都会重新运行此方法  例如：当_incrementCounter方法执行完成
+    print("build");
 
-    // Flutter 框架已经过优化，可以重新运行构建方法build重建任何需要更新的东西
-    // 而不是必须单独更改小部件的实例（例如实例：_MyHomePageState）
+    // build方法构建UI，运行build方法构建任何需要更新的内容，而不是必须更改实例_MyHomePageState
+
     return Scaffold(
       appBar: AppBar(
-        // 这里我们从创建的 MyHomePage 对象中获取值 widget.title
         title: Text(widget.title),
+
+        // widget，它表示与该 State 实例关联的 widget 实例，由Flutter 框架动态设置。
       ),
       body: Center(
-        // Center 上一个布局小部件. 它需要包含一个child部件并将其定位在父级的中间位置
         child: Column(
-          // Column 也是一个布局小部件。 它需要一个children部件然后垂直排列它们
-          // 默认情况下，它会调整自己的大小以适合其水平的children，并试图和它的父级一样高。
-          //
-          // Column 有各种属性来控制它自身的大小和定位
-          // 使用 mainAxisAlignment 来垂直居中Children
-          // 这里的主轴是垂直的轴，因为Column是垂直的；Row的主轴是水平的轴，因为Row是水平的。
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
@@ -71,5 +70,49 @@ class _MyHomePageState extends State<MyHomePage> {
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  // 当 widget 第一次插入到 widget 树时会被调用。
+  @override
+  void initState() {
+    super.initState();
+    _counter = widget.initValue;
+    print("initState");
+  }
+
+  // 当State对象的依赖发生变化时会被调用, 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print("didChangeDependencies");
+  }
+
+  // 此回调是专门为了开发调试而提供的，在热重载(hot reload)时会被调用，此回调在Release模式下永远不会被调用。
+  @override
+  void reassemble() {
+    super.reassemble();
+    print("reassemble");
+  }
+
+  // 在 widget 重新构建时，Flutter 框架会调用widget.canUpdate来检测 
+  // widget 树中同一位置的新旧节点，然后决定是否需要更新，
+  @override
+  void didUpdateWidget(MyHomePage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print("didUpdateWidget ");
+  }
+
+  // 当 State 对象从树中被移除时，会调用此回调
+  @override
+  void deactivate() {
+    super.deactivate();
+    print("deactivate");
+  }
+
+  // 当 State 对象从树中被永久移除时调用；通常在此回调中释放资源。
+  @override
+  void dispose() {
+    super.dispose();
+    print("dispose");
   }
 }
