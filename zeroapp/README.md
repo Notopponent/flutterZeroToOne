@@ -1,7 +1,6 @@
-# zeroapp
-
+# ZeroApp
+<!-- 
 A new Flutter project.
-
 ## Getting Started
 
 This project is a starting point for a Flutter application.
@@ -13,9 +12,84 @@ A few resources to get you started if this is your first Flutter project:
 
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+samples, guidance on mobile development, and a full API reference. -->
+## `widget的解释：`
 
-## 深入浅出组件
+* widget 的功能是“描述一个UI元素的配置信息”
+
+* Flutter 中的 widget ，它不仅可以表示UI元素，也可以表示一些功能性的组件如：用于手势检测的 GestureDetector 、用于APP主题数据传递的 Theme。 
+
+* 小部件、控件、组件都可以理解为是Widget。 Flutter 中是通过 Widget 嵌套 Widget 的方式来构建UI和进行实践处理的，所以记住，Flutter 中万物皆为Widget。
+
+* “一个 widget 可以对应多个Element”；Flutter 框架在构建UI树时，会先调用此方法生成对应节点的Element对象。此方法是 Flutter 框架隐式调用的，在我们开发过程中基本不会调用到。
+
+* Widget类本身是一个抽象类，其中最核心的就是定义了createElement()接口，在 Flutter 开发中，我们一般都不用直接继承Widget类来实现一个新组件，相反，我们通常会通过继承StatelessWidget或StatefulWidget来间接继承widget类来实现。StatelessWidget和StatefulWidget都是直接继承自Widget类，而这两个类也正是 Flutter 中非常重要的两个抽象类
+
+* 按照惯例，widget 的构造函数参数应使用命名参数。命名参数中的必需要传的参数要添加required关键字，这样有利于静态代码分析器进行检查。在继承 widget 时，第一个参数通常应该是Key。同样是按照惯例， widget 的属性应尽可能的被声明为final，防止被意外改变。
+
+## `canUpdate(...) 静态方法`
+
+它主要用于在 widget 树重新build时复用旧的 widget ，其实具体来说，应该是：是否用新的 widget 对象去更新旧UI树上所对应的Element对象的配置；通过其源码我们可以看到，只要new widget与old widget的runtimeType和key同时相等时就会用new widget去更新Element对象的配置，否则就会创建新的Element。
+
+## `StateLessWidget 和 StatefulWidget`
+
+* StatelessWidget继承自widget类，并重写了createElement()方法。用于不需要维护状态的场景，它通常在build方法中通过嵌套其它 widget 来构建UI，在构建过程中会递归的构建其嵌套的 widget 
+
+* build方法有一个context参数，它是BuildContext类的一个实例，表示当前 widget 在 widget 树中的上下文，每一个 widget 都会对应一个 context 对象（因为每一个 widget 都是 widget 树上的一个节点）。实际上，context是当前 widget 在 widget 树中位置执行”相关操作“的一个句柄(handle)，比如它提供了从当前 widget 开始向上遍历 widget 树以及按照 widget 类型查找父级 widget 的方法。
+
+* StatefulWidget也是继承自widget类，并重写了createElement()方法，不同的是返回的Element 对象并不相同；另外StatefulWidget类中添加了一个新的接口createState()。
+
+* createState() 用于创建和 StatefulWidget 相关的状态，它在StatefulWidget 的生命周期中可能会被多次调用。例如，当一个 StatefulWidget 同时插入到 widget 树的多个位置时，Flutter 框架就会调用该方法为每一个位置生成一个独立的State实例，其实，本质上就是一个StatefulElement对应一个State实例。
+
+* 一个 StatefulWidget 类会对应一个 State 类，State表示与其对应的 StatefulWidget 要维护的状态
+
+## `State的生命周期`
+
+initState()
+
+* 当 widget 第一次插入到 widget 树时会被调用，对于每一个State对象，Flutter 框架只会调用一次该回调，所以，通常在该回调中做一些一次性的操作，如状态初始化、订阅子树的事件通知等
+
+didChangeDependencies()
+
+* 当State对象的依赖发生变化时会被调用, 例如：在之前build() 中包含了一个InheritedWidget，然后在之后的build() 中Inherited widget发生了变化，那么此时Inherited widget的子 widget 的didChangeDependencies()回调都会被调用。典型的场景是当系统语言 Locale 或应用主题改变时，Flutter 框架会通知 widget 调用此回调。
+
+build()
+
+* 它主要是用于构建 widget 子树的，会在如下场景被调用：
+* 在调用initState()之后
+* 在调用didUpdateWidget()之后
+* 在调用setState()之后
+* 在调用didChangeDependencies()之后
+* 在State对象从树中一个位置移除后又重新插入到树的其它位置之后
+
+reassemble()
+
+* 此回调是专门为了开发调试而提供的，在热重载(hot reload)时会被调用，此回调在Release模式下永远不会被调用。 Chrome中调试不支持（hot reload）
+
+didUpdateWidget ()
+
+* 在 widget 重新构建时，Flutter 框架会调用widget.canUpdate来检测 widget 树中同一位置的新旧节点，然后决定是否需要更新，如果widget.canUpdate会在新旧 widget 的 key 和 runtimeType 同时相等时会返回true，调用此回调。
+
+deactivate()
+
+* 当 State 对象从树中被移除时，会调用此回调
+
+dispose()
+
+* 当 State 对象从树中被永久移除时调用；通常在此回调中释放资源。
+
+## `Flutter 组件前加const有什么作用？ `
+* https://blog.csdn.net/plokmju88/article/details/118098184
+
+* 结论：在 Flutter 中，Widget 本质只是一个信息配置的元素，它被定义为不可变的，任何的变化反映出来就是销毁 & 重建。而 Widget 不可变之所以不太会影响效率，背后是因为 Element 实现了对 Widget 变化的抽象。也就是虽然 Widget 会被重建，但是 Widget 背后的 Element，却得到了复用。
+
+* 同时 Flutter Framework，自有一套更新策略，确保 Widget 变化的同时，尽可能的复用 Element 对象。这个策略的逻辑在 Element 的 updateChild() 方法中，该方法在 Element 树建立和更新的过程中都非常的重要。
+`
+## `InheritedWidget（数据共享）
+
+* InheritedWidget是 Flutter 中非常重要的一个功能型组件，它提供了一种在 widget 树中从上到下共享数据的方式，比如我们在应用的根 widget 中通过InheritedWidget共享了一个数据，那么我们便可以在任意子widget 中来获取该共享的数据！如Flutter SDK中正是通过 InheritedWidget 来共享应用主题（Theme）和 Locale (当前语言环境)信息的。
+
+## `深入浅出组件`
 
 > MaterialApp属性和说明 - 总共33个属性
 
