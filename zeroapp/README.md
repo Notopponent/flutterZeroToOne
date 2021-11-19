@@ -1,8 +1,10 @@
 # ZeroApp
 
 >2021.11.18 课程目标： 搭建一个最简单的Flutter项目
+
 ## `学习资源链接`
 
+- [Dart 官方文档](https://dart.dev/guides)
 - [编写第一个Flutter应用](https://flutter.dev/docs/get-started/codelab)
 - [Flutter示例列表](https://flutter.dev/docs/cookbook)
 - [Flutter Gallery](https://gallery.flutter.dev/#/)
@@ -14,7 +16,7 @@
 
 * widget 的功能是“描述一个UI元素的配置信息”
 
-* Flutter 中的 widget ，它不仅可以表示UI元素，也可以表示一些功能性的组件如：用于手势检测的 GestureDetector 、用于APP主题数据传递的 Theme。 
+* Flutter 中的 widget ，它不仅可以表示UI元素，也可以表示一些功能性的组件如：用于手势检测的 GestureDetector 、用于APP主题数据传递的 Theme。
 
 * 小部件、控件、组件都可以理解为是Widget。Flutter 中是通过 Widget 嵌套 Widget 的方式来构建UI和进行实践处理的，所以记住，Flutter 中万物皆为Widget。
 
