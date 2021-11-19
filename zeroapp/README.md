@@ -1,25 +1,22 @@
 # ZeroApp
-<!-- 
-A new Flutter project.
-## Getting Started
 
-This project is a starting point for a Flutter application.
+>2021.11.18 课程目标： 搭建一个最简单的Flutter项目
+## `学习资源链接`
 
-A few resources to get you started if this is your first Flutter project:
+- [编写第一个Flutter应用](https://flutter.dev/docs/get-started/codelab)
+- [Flutter示例列表](https://flutter.dev/docs/cookbook)
+- [Flutter Gallery](https://gallery.flutter.dev/#/)
+- [Flutter实战·第二版](https://book.flutterchina.club/preface.html)
+- [Material Components widgets](https://docs.flutter.dev/development/ui/widgets/material)
+- [Cupertino (iOS-style) widgets](https://docs.flutter.dev/development/ui/widgets/cupertino)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference. -->
 ## `widget的解释：`
 
 * widget 的功能是“描述一个UI元素的配置信息”
 
 * Flutter 中的 widget ，它不仅可以表示UI元素，也可以表示一些功能性的组件如：用于手势检测的 GestureDetector 、用于APP主题数据传递的 Theme。 
 
-* 小部件、控件、组件都可以理解为是Widget。 Flutter 中是通过 Widget 嵌套 Widget 的方式来构建UI和进行实践处理的，所以记住，Flutter 中万物皆为Widget。
+* 小部件、控件、组件都可以理解为是Widget。Flutter 中是通过 Widget 嵌套 Widget 的方式来构建UI和进行实践处理的，所以记住，Flutter 中万物皆为Widget。
 
 * “一个 widget 可以对应多个Element”；Flutter 框架在构建UI树时，会先调用此方法生成对应节点的Element对象。此方法是 Flutter 框架隐式调用的，在我们开发过程中基本不会调用到。
 
