@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'app/modules/app_bar/app_bar_view.dart';
-import 'app/modules/bar/bar.dart';
-import 'app/modules/layout/layout_view.dart';
-import 'app/modules/scaffold/scaffold_view.dart';
-import 'app/modules/snack_bar/snack_bar_view.dart';
-import 'app/modules/tab_bar/tab_bar_view.dart';
+import 'app/modules/widget/children/app_bar/app_bar_view.dart';
+import 'app/modules/widget/children/bar/bar.dart';
+import 'app/modules/widget/children/layout/layout_view.dart';
+import 'app/modules/widget/children/scaffold/scaffold_view.dart';
+import 'app/modules/widget/children/snack_bar/snack_bar_view.dart';
+import 'app/modules/widget/children/tab_bar/tab_bar_view.dart';
 import 'app/modules/widget/widget_view.dart';
-import 'app/modules/home/home_view.dart';
+import 'app/modules/widget/children/home/home_view.dart';
 
 void main() {
   runApp(const MyApp());
