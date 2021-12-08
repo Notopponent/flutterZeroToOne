@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'app/modules/home/home_view.dart';
+import 'app/modules/pkmApp/pkm_view.dart';
 import 'app/modules/widget/children/app_bar/app_bar_view.dart';
-import 'app/modules/widget/children/bar/bar.dart';
+import 'app/modules/widget/children/bar/bar_view.dart';
 import 'app/modules/widget/children/layout/layout_view.dart';
 import 'app/modules/widget/children/scaffold/scaffold_view.dart';
 import 'app/modules/widget/children/snack_bar/snack_bar_view.dart';
 import 'app/modules/widget/children/tab_bar/tab_bar_view.dart';
 import 'app/modules/widget/widget_view.dart';
-import 'app/modules/widget/children/home/home_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         "/home": (_) => const MyHomePage(title: 'Home Pages'),
+        "/pkm": (_) => const MyPKMPage(title: '私钥管理列表'),
         "/widget": (_) => const MyWidgetPage(title: 'Widget Pages'),
         "/widget/scaffold": (_) => const MyScaffoldPage(title: 'Scaffold Pages'),
         "/widget/bar": (_) => const MyBarPage(title: 'Bar Pages'),
