@@ -1,6 +1,7 @@
 # ZeroApp
 
->2021.11.18 课程目标： 搭建一个最简单的Flutter项目
+## `2021.11.18 课程目标：`
+* 搭建一个最简单的Flutter项目
 
 ## `学习资源链接`
 
@@ -189,11 +190,18 @@ dispose()
 | systemOverlayStyle | SystemUiOverlayStyle | 叠加层的样式 |
 | brightness | Brightness | 导航栏的亮度，改属性已废弃，用systemOverlayStyle代替 |
 
->2021.12.09 课程目标： 掌握列表组件ListView与List对象基本用法
+## `2021.12.09 课程目标：`
+1. 掌握列表组件ListView与List对象基本用法
+2. 掌握第三方库的引入并使用
+3. 掌握基本的UI绘制能力（定位、布局、交互）
+
+## `学习资源链接`
+
+- [ListView](https://book.flutterchina.club/chapter6/listview.html)
+- [Dart List对象API](https://api.dart.dev/stable/2.15.0/dart-core/List-class.html)
+- [flutter_smart_dialog](https://pub.dev/packages/flutter_smart_dialog)
 
 ## `Dart List数据类型属性与用法`
-
-- [Dart List对象API](https://api.dart.dev/stable/2.15.0/dart-core/List-class.html)
 
 1. 定义
 

@@ -37,6 +37,8 @@ dependencies:
 
   # 扫码
   qr_code_scanner: ^0.6.1
+  # 通知
+  flutter_smart_dialog: ^3.0.6
 
 dev_dependencies:
   flutter_test:

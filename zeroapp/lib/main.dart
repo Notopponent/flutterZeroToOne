@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'app/modules/home/home_view.dart';
 import 'app/modules/pkmApp/pkm_view.dart';
 import 'app/modules/widget/children/app_bar/app_bar_view.dart';
@@ -43,6 +44,10 @@ class MyApp extends StatelessWidget {
       },
       initialRoute: "/home",
       debugShowCheckedModeBanner: false,
+
+      // 第三方包配置
+      navigatorObservers: [FlutterSmartDialog.observer],
+      builder: FlutterSmartDialog.init(),
     );
   }
 }

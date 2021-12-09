@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:zeroapp/app/modules/pkmApp/scan_page1.dart';
 
 class MyPKMPage extends StatefulWidget {
@@ -22,7 +23,11 @@ class _MyPKMPageState extends State<MyPKMPage> {
   ];
 
   //创建
-  void createPk() {
+  Future<void> createPk() async {
+    SmartDialog.showLoading();
+    await Future.delayed(const Duration(seconds: 2));
+    SmartDialog.dismiss(); 
+    SmartDialog.showToast('创建密钥对成功');
     pkList.add({
       'key': number,
       'name': '密钥' + number.toString(),
@@ -37,6 +42,7 @@ class _MyPKMPageState extends State<MyPKMPage> {
 
   //删除
   void delete(index) {
+    SmartDialog.showToast('密钥删除成功');
     pkList.removeAt(index);
     setState(() { pkList;});
   }
@@ -51,7 +57,11 @@ class _MyPKMPageState extends State<MyPKMPage> {
   }
 
   //密钥分片存储
-  void cloldMPC(index) {
+  Future<void> cloldMPC(index) async {
+    SmartDialog.showLoading();
+    await Future.delayed(const Duration(seconds: 2));
+    SmartDialog.dismiss(); 
+    SmartDialog.showToast('密钥分片存储成功');
     setState(() {
       pkList[index]['status'] = 'success';
     });
