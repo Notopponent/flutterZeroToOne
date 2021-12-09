@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         "/home": (_) => const MyHomePage(title: 'Home Pages'),
-        "/pkm": (_) => const MyPKMPage(title: '私钥管理列表'),
+        "/pkm": (_) => const MyPKMPage(title: '密钥管理器'),
         "/widget": (_) => const MyWidgetPage(title: 'Widget Pages'),
         "/widget/scaffold": (_) => const MyScaffoldPage(title: 'Scaffold Pages'),
         "/widget/bar": (_) => const MyBarPage(title: 'Bar Pages'),
@@ -42,6 +42,7 @@ class MyApp extends StatelessWidget {
         "/widget/layout": (_) => const MyLayoutPage(title: 'Layout Pages'),
       },
       initialRoute: "/home",
+      debugShowCheckedModeBanner: false,
     );
   }
 }

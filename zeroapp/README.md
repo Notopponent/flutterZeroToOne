@@ -188,3 +188,65 @@ dispose()
 | flexibleSpace | Widget | 堆叠在工具栏和选项卡栏的后面 |
 | systemOverlayStyle | SystemUiOverlayStyle | 叠加层的样式 |
 | brightness | Brightness | 导航栏的亮度，改属性已废弃，用systemOverlayStyle代替 |
+
+>2021.12.09 课程目标： 掌握列表组件ListView与List对象基本用法
+
+## `Dart List数据类型属性与用法`
+
+- [Dart List对象API](https://api.dart.dev/stable/2.15.0/dart-core/List-class.html)
+
+1. 定义
+
+``` Dart
+  // 使用类型推导定义
+  var list1 = ['a','b','c','d'];         //初始就赋值，限定了长度，限定了类型，只能是String
+  print('$list1, ${list1.runtimeType}'); //[a, b, c, d], List<String>
+
+  // 明确指定类型
+  List<int> list2 = [1,2,3,4];           //初始就赋值，限定了长度，限定了类型，只能是int
+  print("$list2,${list2.runtimeType}");  //[1, 2, 3, 4],List<int>
+
+  // 其他定义（类型推导定义）
+  var list3 = ['x','y','z'];
+  var list4 = List();                    //不限定长度，不限定类型，可添加任意类型的数据
+  List list5 = List();                   //不限定长度，不限定类型，可添加任意类型的数据
+  List list6 = List(2);                  //限定长度为2  越界会报错，不限定类型，可添加任意类型的数据
+
+  // 常见属性
+  print(list1.length);                    // 4  获取list1长度
+  print(list1.isEmpty);                   // false  字符串是否为空
+  print(list1.isNotEmpty);                // true   字符串是否不为空
+  print(list1.reversed);                  // (d, c, b, a)   返回一个倒序排列的List，不影响原List;
+  print(list1.first);                     // a  第一个元素
+  print(list1.last);                      // d  最后一个元素
+``` 
+
+2. 常用的方法
+
+``` Dart
+  // add方法： 添加元素到末尾
+  list1.add('f');
+  list2.add(5);
+  print('结果：$list1,$list2');            //结果：[a, b, c, d, f],[1, 2, 3, 4, 5]
+
+  // addAll方法： 添加列表内的所有元素到末尾
+  list1.addAll(list3);
+  print('结果：$list1');                   // 结果：[a, b, c, d, f, x, y, z]
+  
+  // remove方法：删除指定元素
+  list1.remove('a');                       //list1 删除a元素
+  print('结果：$list1');                    //结果：[b, c, d, g, x, y, z, f, x, y, z]
+
+  // removeAt方法：删除指定下标的元素
+  list1.removeRange(0, 3);                 //list1 删除下标0-3元素
+  print('结果：$list1');                    //结果：[x, y, z, f, x, y]
+
+  // removeAt(x) 删除指定下标的元素
+  // removeLast() 删除最后一个元素
+  // removeRange(x,y) 删除下标范围内的元素
+  // contains(value) 是否包含某个元素
+  // removeWhere(()=>(bool)) 根据条件删除
+  // retainWhere(()=>(bool)) 根据条件筛选元素
+  // firstWhere((element) =>(bool), orElse:()=>()) 返回第一个满足条件的元素
+  // lastWhere((element) =>(bool), orElse:()=>()) 从后往前查找，返回第一个满足条件的元素
+``` 
