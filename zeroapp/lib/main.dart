@@ -11,6 +11,8 @@ import 'app/modules/widget/children/tab_bar/tab_bar_view.dart';
 import 'app/modules/widget/widget_view.dart';
 
 void main() {
+  // 在插件初始化期间访问二进制文件， 那么需要显示调用一下
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 

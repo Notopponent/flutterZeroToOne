@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
 import 'package:zeroapp/app/modules/pkmApp/scan_page1.dart';
 
@@ -12,6 +14,9 @@ class MyPKMPage extends StatefulWidget {
 }
 
 class _MyPKMPageState extends State<MyPKMPage> {
+  late InAppWebViewController webView;
+  String indexFilePath = "lib/js/secret-manager.flutter.bundle.js";
+  String indexJS = "";
   int number = 2;
   List<dynamic> pkList = [
     {
@@ -21,6 +26,32 @@ class _MyPKMPageState extends State<MyPKMPage> {
       'status': 'success',
     }
   ];
+
+
+  // 当 widget 第一次插入到 widget 树时会被调用。
+  @override
+  void initState() {
+    super.initState();
+
+    rootBundle.loadString(indexFilePath).then((value) => {
+      indexJS = value
+    });
+
+    // let secretManager = new SecretManager();
+    // let originText = ';adfiadpsadf;oiu234-08werqwoeirjw[oijasdfaoijdsfasdfasdfafdsasdfafdssa';
+    // secretManager.setAmount(3);
+    // secretManager.setThreshold(2);
+    // let sliceArr = null;
+    // secretManager.createLongTextShares(originText).then(res => {
+    //   console.log("sliceArr ======> ", res);
+    //   sliceArr = res;
+
+    //   secretManager.combineLongTextShares(sliceArr.slice(-2)).then(res => {
+    //     console.log(res);
+    //     console.log(res == originText);
+    //   });
+    // });
+  }
 
   //创建
   Future<void> createPk() async {
@@ -49,11 +80,15 @@ class _MyPKMPageState extends State<MyPKMPage> {
 
   //扫码
   void scanPk(BuildContext context, int index) {
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return const QRViewExample();
-    })).then((value) {
-      print(value); //拿到扫描结果
-    });
+    // Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+    //   return const QRViewExample();
+    // })).then((value) {
+    //   print(value); //拿到扫描结果
+    // });
+    // webView.loadUrl(urlRequest: null);
+    // ignore: avoid_print
+    print(indexJS);
+    webView.evaluateJavascript(source: indexJS);
   }
 
   //密钥分片存储
