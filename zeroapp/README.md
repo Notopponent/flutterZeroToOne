@@ -200,6 +200,8 @@ dispose()
 - [ListView](https://book.flutterchina.club/chapter6/listview.html)
 - [Dart List对象API](https://api.dart.dev/stable/2.15.0/dart-core/List-class.html)
 - [flutter_smart_dialog](https://pub.dev/packages/flutter_smart_dialog)
+- [flutter_inappwebview](https://pub.dev/packages/flutter_inappwebview)
+- [shared_preferences](https://pub.dev/packages/shared_preferences)
 
 ## `Dart List数据类型属性与用法`
 
