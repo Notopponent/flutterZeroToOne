@@ -20,7 +20,7 @@ void main() {
 }
 
 // StatelessWidget继承自widget类，并重写了createElement()方法，用于不需要维护状态的场景。
-// 它通常在build方法中通过嵌套其它 widget 来构建UI，在构建过程中会递归的构建其嵌套的 widget 
+// 它通常在build方法中通过嵌套其它 widget 来构建UI，在构建过程中会递归的构建其嵌套的 widget
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
