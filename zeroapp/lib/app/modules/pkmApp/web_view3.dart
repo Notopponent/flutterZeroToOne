@@ -38,10 +38,11 @@ class _WebView3PageState extends State<WebView3Page> {
     rootBundle.loadString(indexFilePath).then((value) {
       indexJS = value;
 
+
       headlessWebView = HeadlessInAppWebView(
         initialUrlRequest: URLRequest(url: Uri.parse("https://github.com/flutter")),
         onLoadStop: (controller, url) async {
-          // print(indexJS);
+          print(indexJS);
           // var result = await controller.evaluateJavascript(source: indexFilePath);
 
           // controller.addJavaScriptHandler(handlerName: 'createLongTextShares', callback: (args) {
@@ -51,14 +52,20 @@ class _WebView3PageState extends State<WebView3Page> {
           // print(result.runtimeType);
           // print(result);
 
-          print(indexJS);
-          controller.addJavaScriptHandler(handlerName: 'createLongTextShares', callback: (args) {
-            // return data to the JavaScript side!
-            print(args);
-            return ';adfiadpsadf;oiu234-08werqwoeirjw[oijasdfaoijdsfasdfasdfafdsasdfafdssa';
-          });
+          // print(indexJS);
+          // controller.addJavaScriptHandler(handlerName: 'createLongTextShares', callback: (args) {
+          //   // return data to the JavaScript side!
+          //   print(args);
+          //   return ';adfiadpsadf;oiu234-08werqwoeirjw[oijasdfaoijdsfasdfasdfafdsasdfafdssa';
+          // });
 
-          controller.addJavaScriptHandler(handlerName: 'combineLongTextShares', callback: (args) {
+          // controller.addJavaScriptHandler(handlerName: 'combineLongTextShares', callback: (args) {
+          //   print(args);
+          //   return 'Dart: 我不知该干什么';
+          // });
+
+          print("===== myHandlerName  onLoadStop========");
+          controller.addJavaScriptHandler(handlerName: 'myHandlerName', callback: (args) {
             print(args);
             return 'Dart: 我不知该干什么';
           });

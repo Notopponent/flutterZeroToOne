@@ -173,10 +173,11 @@ class _MyPKMPageState extends State<MyPKMPage> {
                           ),
                           IconButton(
                             onPressed: (){
-                              Navigator.of(context).pushNamed('/pkm_detail').then((data){
-                                isRecover = true;
-                                setState(() {});
-                              });  
+                              // Navigator.of(context).pushNamed('/pkm_detail').then((data){
+                              //   isRecover = true;
+                              //   setState(() {});
+                              // }); 
+                              Navigator.of(context).pushNamed('/web_view2');
                             },
                             tooltip: "设置",
                             icon: const Icon(Icons.settings, color: Colors.grey),

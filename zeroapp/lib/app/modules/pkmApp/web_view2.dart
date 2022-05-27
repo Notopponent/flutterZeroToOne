@@ -37,7 +37,7 @@ class _WebView2PageState extends State<WebView2Page> {
                 Expanded(
                   child: InAppWebView(
                     initialData: InAppWebViewInitialData(
-                      // data: indexJS
+                      // data: indexJS,
                         data: """
 <!DOCTYPE html>
 <html lang="en">
@@ -47,15 +47,23 @@ class _WebView2PageState extends State<WebView2Page> {
     </head>
     <body>
         <h1>JavaScript Handlers</h1>
+        <script type="text/javascript" src="lib/js/sss-wasm.min.js"></script>
         <script>
+            class SecretManager {
+              constructor() {
+                  this.amount = 3;
+                  this.threshold = 2;
+              }
+              isInteger() {
+                  return this.amount;
+              }
+            }
             window.addEventListener("flutterInAppWebViewPlatformReady", function(event) {
                 window.flutter_inappwebview.callHandler('createLongTextShares', 'JS: 我可以接收一串私钥，然后帮你进行一下分片操作')
                   .then(function(result) {     
-                    // result 是 Dart给我的私钥  
-                    // 这里拿到私钥后进行分片[A, B, C] 
-                    let arr = ['A', 'B', 'C'];
-                    window.flutter_inappwebview.callHandler(
-                      'combineLongTextShares', 'JS: 我把你的私钥分成了3片', arr);
+                    let secretManager = new SecretManager();
+                    let amount = secretManager.isInteger();
+                    window.flutter_inappwebview.callHandler('combineLongTextShares', 'JS: 我把你的私钥分成了3片', amount);
                 });
             });
         </script>
@@ -65,16 +73,22 @@ class _WebView2PageState extends State<WebView2Page> {
                     ),
                     initialOptions: options,
                     onWebViewCreated: (controller) {
-                      controller.addJavaScriptHandler(handlerName: 'createLongTextShares', callback: (args) {
-                        // return data to the JavaScript side!
-                        print(args);
-                        return ';adfiadpsadf;oiu234-08werqwoeirjw[oijasdfaoijdsfasdfasdfafdsasdfafdssa';
-                      });
+                      // controller.addJavaScriptHandler(handlerName: 'createLongTextShares', callback: (args) {
+                      //   // return data to the JavaScript side!
+                      //   print(args);
+                      //   // return ';adfiadpsadf;oiu234-08werqwoeirjw[oijasdfaoijdsfasdfasdfafdsasdfafdssa';
+                      // });
 
                       controller.addJavaScriptHandler(handlerName: 'combineLongTextShares', callback: (args) {
-                        print(args[1].length);
+                        print(args);
                         return 'Dart: 我不知该干什么';
                       });
+                      // print("===== myHandlerName ========");
+                      // controller.addJavaScriptHandler(handlerName: 'myHandlerName', callback: (args) {
+                      //   print(args);
+                      //   return 'Dart: 我不知该干什么';
+                      // });
+
                     },
                   ),
                 ),

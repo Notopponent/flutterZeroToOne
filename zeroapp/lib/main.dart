@@ -5,6 +5,7 @@ import 'app/modules/pkmApp/pkm_detail.dart';
 import 'app/modules/pkmApp/pkm_view.dart';
 import 'app/modules/pkmApp/web_view1.dart';
 import 'app/modules/pkmApp/web_view2.dart';
+import 'app/modules/pkmApp/web_view3.dart';
 import 'app/modules/widget/children/app_bar/app_bar_view.dart';
 import 'app/modules/widget/children/bar/bar_view.dart';
 import 'app/modules/widget/children/layout/layout_view.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
         "/pkm_detail": (_) => const MyPKDetailPage(title: 'Chicago 密钥详情'),
         "/web_view1": (_) => const WebView1Page(),
         "/web_view2": (_) => const WebView2Page(),
+        "/web_view3": (_) => const WebView3Page(),
         "/widget": (_) => const MyWidgetPage(title: 'Widget Pages'),
         "/widget/scaffold": (_) => const MyScaffoldPage(title: 'Scaffold Pages'),
         "/widget/bar": (_) => const MyBarPage(title: 'Bar Pages'),

@@ -74,6 +74,7 @@ flutter:
   assets:
     - assets/images/
     - lib/js/secret.js
+    - lib/js/sss-wasm.min.js
     - lib/js/secret-manager.flutter.bundle.js
 
   # An image asset can refer to one or more resolution-specific "variants", see
